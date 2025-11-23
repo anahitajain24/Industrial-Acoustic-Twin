@@ -80,7 +80,7 @@ class LiveMonitor(pg.GraphicsLayoutWidget):
         window = np.hanning(len(recent))
         
         # 2. FFT Calculation (with 200x Gain for visibility)
-        fft_data = (np.abs(np.fft.rfft(recent * window)) / CHUNK_SIZE) * 200
+        fft_data = (np.abs(np.fft.rfft(recent * window)) / CHUNK_SIZE) * 400
         freqs = np.fft.rfftfreq(CHUNK_SIZE, 1/SAMPLE_RATE)
         
         # 3. ALARM LOGIC
@@ -119,4 +119,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     pg.setConfigOption('background', 'k')
     win = LiveMonitor()
+
     sys.exit(app.exec_())
